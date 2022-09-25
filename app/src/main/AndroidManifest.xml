@@ -14,6 +14,11 @@
         android:theme="@style/Theme.Hostelite"
         tools:targetApi="31">
         <activity
+            android:name=".BoardingPage"
+            android:exported="false"
+            android:label="@string/title_activity_boarding_page"
+            android:theme="@style/Theme.Hostelite" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
