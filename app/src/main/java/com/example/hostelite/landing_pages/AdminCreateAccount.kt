@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun AdminCreateAccount() {
+fun AdminCreateAccount(onNavigateToLogin: () -> Unit) {
     val formValues = listOf<MutableState<String>>(
         remember { mutableStateOf("") },
         remember { mutableStateOf("") },
@@ -40,7 +40,7 @@ fun AdminCreateAccount() {
         modifier = Modifier.fillMaxSize()
     ) {
         IconButton(
-            onClick = { /*TODO*/ },
+            onClick = { onNavigateToLogin() },
             modifier = Modifier.padding(10.dp)
         ) {
             Icon(imageVector = Icons.Filled.ArrowBackIos, contentDescription = "Go back")
@@ -65,7 +65,7 @@ fun AdminCreateAccount() {
                         fontWeight = FontWeight(500)
                     )
                 ),
-                onClick = {})
+                onClick = {onNavigateToLogin()})
         }
 
         Column(

@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
@@ -33,7 +34,7 @@ import kotlin.math.min
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun BoardingPage(){
+fun BoardingPage(onNavigateToLogin: () -> Unit){
     val pagerState = rememberPagerState(initialPage = 0)
     val coroutineScope = rememberCoroutineScope()
 
@@ -42,22 +43,43 @@ fun BoardingPage(){
             .padding(horizontal = 15.dp, vertical = 5.dp)
             .fillMaxSize()
     ) {
-        IconButton(
-            onClick = {
-                if(pagerState.currentPage != 2){
-                    coroutineScope.launch {
-                        pagerState.animateScrollToPage(page = pagerState.currentPage+1)
-                    }
-                }
-            },
-            modifier = Modifier
-                .padding(bottom = 50.dp)
-                .then(Modifier.size(50.dp))
-                .clip(CircleShape)
-                .background(Color(0xFF9C32A6))
-                .align(Alignment.BottomEnd),
-            content = { forwardButton() },
-        )
+        if(pagerState.currentPage != 2){
+            IconButton(
+                onClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(page = pagerState.currentPage+1)
+                        }
+                },
+                modifier = Modifier
+                    .padding(bottom = 50.dp)
+                    .then(Modifier.size(50.dp))
+                    .clip(CircleShape)
+                    .background(Color(0xFF9C32A6))
+                    .align(Alignment.BottomEnd),
+                content = { forwardButton() },
+            )
+        }
+        else{
+            TextButton(
+                onClick = { onNavigateToLogin() },
+                shape = RoundedCornerShape(corner = CornerSize(15.dp)),
+                modifier = Modifier
+                    .clip(RoundedCornerShape(corner = CornerSize(15.dp)))
+                    .fillMaxWidth(0.75f)
+                    .background(color = Color(0xFF9C32A6))
+                    .align(Alignment.BottomCenter)
+            ) {
+                Text(
+                    text = "Get Started",
+                    style = TextStyle(
+                        color = Color.White,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.W400
+                    )
+                )
+            }
+        }
+
         mainContent(pagerState, coroutineScope)
         TextButton(
             modifier = Modifier.align(Alignment.TopEnd),

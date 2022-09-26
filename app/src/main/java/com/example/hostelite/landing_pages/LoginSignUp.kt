@@ -30,7 +30,7 @@ import com.example.hostelite.R
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Login(){
+fun Login(onNavigateToStudentCreate: () -> Unit, onNavigateToAdminCreate: () -> Unit) {
     var emailValue = remember {mutableStateOf("")}
     var passValue = remember {mutableStateOf("")}
     var isStudent = remember {mutableStateOf(true)}
@@ -179,7 +179,14 @@ fun Login(){
                         fontWeight = FontWeight(500)
                     )
                 ),
-                onClick = {})
+                onClick = {
+                    if(isStudent.value){
+                        onNavigateToStudentCreate()
+                    }
+                    else{
+                        onNavigateToAdminCreate()
+                    }
+                })
         }
 
     }
