@@ -2,4 +2,6 @@
     <string name="app_name">Hostelite</string>
     <string name="title_activity_boarding_page">BoardingPage</string>
     <string name="title_activity_login_sign_up">LoginSignUp</string>
+    <string name="title_activity_student_create_account">StudentCreateAccount</string>
+    <string name="title_activity_admin_create_account">AdminCreateAccount</string>
 </resources>

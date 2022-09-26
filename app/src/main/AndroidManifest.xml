@@ -14,6 +14,16 @@
         android:theme="@style/Theme.Hostelite"
         tools:targetApi="31">
         <activity
+            android:name=".AdminCreateAccount"
+            android:exported="false"
+            android:label="@string/title_activity_admin_create_account"
+            android:theme="@style/Theme.Hostelite" />
+        <activity
+            android:name=".StudentCreateAccount"
+            android:exported="false"
+            android:label="@string/title_activity_student_create_account"
+            android:theme="@style/Theme.Hostelite" />
+        <activity
             android:name=".LoginSignUp"
             android:exported="false"
             android:label="@string/title_activity_login_sign_up"
