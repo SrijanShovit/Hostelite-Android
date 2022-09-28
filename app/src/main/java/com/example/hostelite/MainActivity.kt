@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.hostelite.admin_screens.AdminHome
 import com.example.hostelite.landing_pages.AdminCreateAccount
 import com.example.hostelite.landing_pages.CreateAccountStudent
 import com.example.hostelite.landing_pages.Login
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavigationController(){
     val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = "homestudent", builder = {
+    NavHost(navController = navController , startDestination = "homeadmin", builder = {
         composable("boarding") {
             BoardingPage(
                 onNavigateToLogin = {
@@ -81,13 +82,25 @@ fun NavigationController(){
             StudentHome(navController)
         }
 
-        composable(route = "entryexitreports"){
+        composable(route = "homeadmin"){
+            AdminHome(navController)
+        }
+        composable(route = "studententryexitreports"){
+
+        }
+        composable(route = "adminentryexitreports"){
 
         }
         composable(route = "mycomplaints"){
 
         }
-        composable(route = "profile"){
+        composable(route = "studentprofile"){
+
+        }
+        composable(route = "adminprofile"){
+
+        }
+        composable(route = "alerts"){
 
         }
     })

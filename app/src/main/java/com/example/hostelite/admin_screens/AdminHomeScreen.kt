@@ -1,4 +1,4 @@
-package com.example.hostelite.student_screens
+package com.example.hostelite.admin_screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.AddAlert
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -33,7 +32,7 @@ import com.example.hostelite.shared.widgets.BottomDrawer
 import kotlinx.coroutines.launch
 
 @Composable
-fun StudentHome(navController: NavController){
+fun AdminHome(navController: NavController){
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
     ModalDrawer(
@@ -44,9 +43,9 @@ fun StudentHome(navController: NavController){
                 IconButton(onClick = {
                     coroutineScope.launch { drawerState.close() }
                 },
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(top = 20.dp)) {
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(top = 20.dp)) {
                     Icon(
                         imageVector = Icons.Outlined.Close,
                         contentDescription = null,
@@ -86,7 +85,7 @@ fun StudentHome(navController: NavController){
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text = "Room no: 2-3",
+                        text = "Hostel Incharge",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color(0xFF535353),
@@ -140,16 +139,16 @@ fun StudentHome(navController: NavController){
                             coroutineScope.launch {
                                 drawerState.open()
                             }
-                        }) {
+                        },
+                        modifier = Modifier.weight(0.5f)) {
                             Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu")
                         }
                         Image(
                             painter = painterResource(id = R.drawable.hostellite ),
-                            contentDescription = null
+                            contentDescription = null,
+                            modifier = Modifier.weight(4f)
                         )
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Icon(imageVector = Icons.Outlined.AddAlert, contentDescription = "Alert")
-                        }
+                        Spacer(modifier = Modifier.weight(0.5f))
                     }
                     Spacer(modifier = Modifier.height(30.dp))
                     Column(
@@ -194,87 +193,74 @@ fun StudentHome(navController: NavController){
                         )
                         Spacer(modifier = Modifier.height(30.dp))
 
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .fillMaxHeight(0.65f)
+                        Column(
+                            modifier = Modifier.fillMaxSize()
                         ){
-                            Column(
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier
-                                    .weight(1f)
                                     .clip(shape = RoundedCornerShape(corner = CornerSize(30.dp)))
                                     .border(width = 2.dp, color = Color(0xAA000000))
-                                    .fillMaxHeight()
+                                    .fillMaxWidth()
+                                    .fillMaxHeight(0.40f)
                                     .padding(horizontal = 10.dp),
-                                verticalArrangement = Arrangement.Center
                             ){
                                 Image(
                                     painter = painterResource(id = R.drawable.complaints),
                                     contentDescription = "Post A Complaint",
                                     modifier = Modifier.size(size = 150.dp)
                                 )
-                                Text(
-                                    text = "Post a",
-                                    style = TextStyle(
-                                        fontSize = 14.sp,
-                                        fontWeight = FontWeight.W400
-                                    ),
-                                    modifier = Modifier.padding(horizontal = 10.dp)
-                                )
-                                Text(
-                                    text = "Complaint",
-                                    style = TextStyle(
-                                        fontSize = 20.sp,
-                                        fontWeight = FontWeight.W700
-                                    ),
-                                    modifier = Modifier.padding(horizontal = 10.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(width = 7.dp))
-                            Column(
-                                modifier = Modifier.weight(1f)
-                            ){
-                                Row(
-                                    modifier = Modifier
-                                        .clip(shape = RoundedCornerShape(corner = CornerSize(20.dp)))
-                                        .background(Color(0xFFFFBCF4))
-                                        .weight(1f),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ){
-                                    Image(
-                                        painter = painterResource(id = R.drawable.entry),
-                                        contentDescription = "Mark Entry",
-                                        modifier = Modifier.size(100.dp)
+                                Column(){
+                                    Text(
+                                        text = "View",
+                                        style = TextStyle(
+                                            fontSize = 14.sp,
+                                            fontWeight = FontWeight.W400
+                                        ),
+                                        modifier = Modifier.padding(horizontal = 10.dp)
                                     )
                                     Text(
-                                        text = "Mark Entry",
+                                        text = "Complaints",
                                         style = TextStyle(
-                                            fontSize = 16.sp,
-                                            fontWeight = FontWeight.W700,
-                                            color = Color(0xFF7E1D7B)
-                                        )
+                                            fontSize = 20.sp,
+                                            fontWeight = FontWeight.W700
+                                        ),
+                                        modifier = Modifier.padding(horizontal = 10.dp)
                                     )
                                 }
-                                Spacer(modifier = Modifier.height(height= 7.dp))
-                                Row(
-                                    modifier = Modifier
-                                        .clip(shape = RoundedCornerShape(corner = CornerSize(20.dp)))
-                                        .background(Color(0xFF51E71D))
-                                        .weight(1f),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ){
-                                    Image(
-                                        painter = painterResource(id = R.drawable.exit),
-                                        contentDescription = "Mark Exit",
-                                        modifier = Modifier.size(100.dp)
+                            }
+                            Spacer(modifier = Modifier.fillMaxHeight(0.1f))
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .clip(shape = RoundedCornerShape(corner = CornerSize(30.dp)))
+                                    .fillMaxWidth()
+                                    .fillMaxHeight(0.5f)
+                                    .background(Color(0xFFFFBCF4))
+                                    .padding(horizontal = 10.dp),
+                            ){
+                                Image(
+                                    painter = painterResource(id = R.drawable.entry),
+                                    contentDescription = "Entry/Exit Reports",
+                                    modifier = Modifier.size(size = 150.dp)
+                                )
+                                Column(){
+                                    Text(
+                                        text = "Entry/Exit",
+                                        style = TextStyle(
+                                            fontSize = 14.sp,
+                                            fontWeight = FontWeight.W500,
+                                            color = Color(0xFF743C7D)
+                                        ),
+                                        modifier = Modifier.padding(horizontal = 10.dp)
                                     )
                                     Text(
-                                        text = "Mark Exit",
+                                        text = "Reports",
                                         style = TextStyle(
-                                            fontSize = 16.sp,
-                                            fontWeight = FontWeight.W700,
-                                            color = Color.White
-                                        )
+                                            fontSize = 20.sp,
+                                            fontWeight = FontWeight.W700
+                                        ),
+                                        modifier = Modifier.padding(horizontal = 10.dp)
                                     )
                                 }
                             }
@@ -282,7 +268,7 @@ fun StudentHome(navController: NavController){
                     }
                 }
             }
-            }
+        }
         }
     )
 }
