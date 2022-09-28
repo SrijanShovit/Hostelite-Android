@@ -78,7 +78,17 @@ fun NavigationController(){
             )
         }
         composable(route = "homestudent") {
-            StudentHome()
+            StudentHome(navController)
+        }
+
+        composable(route = "entryexitreports"){
+
+        }
+        composable(route = "mycomplaints"){
+
+        }
+        composable(route = "profile"){
+
         }
     })
 }
