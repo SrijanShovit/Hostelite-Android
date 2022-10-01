@@ -29,6 +29,13 @@ A hostel management app being built where the complains of students and their ex
 - Do take care of [Code of Conduct](https://github.com/SrijanShovit/Hostelite-Android/blob/main/CODE_OF_CONDUCT.md)
 - Checkout the [CONTRIBUTING.md](https://github.com/SrijanShovit/Hostelite-Android/blob/main/CONTRIBUTING.md) for the contribution guidelines 
 
+## Our budding maintainer and contributors:
+
+<a href="https://github.com/SrijanShovit/Hostelite-Android/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=SrijanShovit/Hostelite-Android" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 <h4>If you 💓 this, do smash the ⭐ button!!</h4>
 
