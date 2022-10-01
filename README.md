@@ -11,6 +11,9 @@ A hostel management app being built where the complains of students and their ex
 [![Issues](https://img.shields.io/github/issues/SrijanShovit/Hostelite-Android?style=for-the-badge&label=Issues)](https://github.com/SrijanShovit/Hostelite-Android)
 [![Watchers](	https://img.shields.io/github/watchers/SrijanShovit/Hostelite-Android?label=Watch&style=for-the-badge)](https://github.com/SrijanShovit/Hostelite-Android/) 
 
+<h3 align="left">Tech-stack :</h3>
+<p align="left"> <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://kotlinlang.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg" alt="kotlin" width="40" height="40"/> </a> </p>
+
 ### Interested?🤩 Check how you can be a part of it👇
 
 - Do take care of [Code of Conduct](https://github.com/SrijanShovit/Hostelite-Android/blob/main/CODE_OF_CONDUCT.md)
