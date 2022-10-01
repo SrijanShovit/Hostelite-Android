@@ -1,17 +1,46 @@
 package com.example.hostelite.shared.widgets
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.ArrowBackIos
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 
+@Composable
+fun AppBar(navController: NavController, text: String){
+    TopAppBar(
+        backgroundColor = Color(0xFFFE96FA),
+        contentColor = Color.Black,
+        modifier = Modifier.height(75.dp)
+    ) {
+        IconButton(onClick = {
+            navController.popBackStack()
+        }) {
+            Icon(imageVector = Icons.Outlined.ArrowBackIos, contentDescription = null)
+        }
+        Text(
+            text = text,
+            style = TextStyle(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.W500
+            )
+        )
+
+    }
+}
 @Composable
 fun BottomDrawer(navController: NavController, isStudent: Boolean){
     val studentItems = listOf(
