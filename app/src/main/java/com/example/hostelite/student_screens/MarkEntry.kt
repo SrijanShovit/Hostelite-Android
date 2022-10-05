@@ -91,6 +91,23 @@ fun MarkEntry(navController: NavController){
                                 color = Color(0xFF115A11)
                             )
                         )
+                        Spacer(modifier = Modifier.height(20.dp))
+                        Text(
+                            text = "Latitude: ",
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.W400,
+                                color = Color.Black
+                            )
+                        )
+                        Text(
+                            text = "Longitude: ",
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.W400,
+                                color = Color.Black
+                            )
+                        )
                     }
                     Spacer(modifier = Modifier.width(40.dp))
                     IconButton(
