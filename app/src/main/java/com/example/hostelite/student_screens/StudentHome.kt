@@ -259,7 +259,8 @@ fun StudentHome(navController: NavController){
                                     modifier = Modifier
                                         .clip(shape = RoundedCornerShape(corner = CornerSize(20.dp)))
                                         .background(Color(0xFF51E71D))
-                                        .weight(1f),
+                                        .weight(1f)
+                                        .clickable { navController.navigate(route = "markexit")},
                                     verticalAlignment = Alignment.CenterVertically
                                 ){
                                     Image(

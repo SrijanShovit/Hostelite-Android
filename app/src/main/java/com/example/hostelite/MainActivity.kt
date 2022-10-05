@@ -16,6 +16,7 @@ import com.example.hostelite.landing_pages.AdminCreateAccount
 import com.example.hostelite.landing_pages.CreateAccountStudent
 import com.example.hostelite.landing_pages.Login
 import com.example.hostelite.student_screens.MarkEntry
+import com.example.hostelite.student_screens.MarkExit
 import com.example.hostelite.student_screens.StudentHome
 import com.example.hostelite.student_screens.StudentReportIssue
 import com.example.hostelite.ui.theme.HosteliteTheme
@@ -110,6 +111,9 @@ fun NavigationController(){
         }
         composable(route = "markentry"){
             MarkEntry(navController = navController)
+        }
+        composable(route = "markexit"){
+            MarkExit(navController = navController)
         }
     })
 }
