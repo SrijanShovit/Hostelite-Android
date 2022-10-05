@@ -1,12 +1,9 @@
 package com.example.hostelite.student_screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -205,7 +202,8 @@ fun StudentHome(navController: NavController){
                                     .clip(shape = RoundedCornerShape(corner = CornerSize(30.dp)))
                                     .border(width = 2.dp, color = Color(0xAA000000))
                                     .fillMaxHeight()
-                                    .padding(horizontal = 10.dp),
+                                    .padding(horizontal = 10.dp)
+                                    .clickable { navController.navigate(route = "studentreportissue") },
                                 verticalArrangement = Arrangement.Center
                             ){
                                 Image(
@@ -238,7 +236,8 @@ fun StudentHome(navController: NavController){
                                     modifier = Modifier
                                         .clip(shape = RoundedCornerShape(corner = CornerSize(20.dp)))
                                         .background(Color(0xFFFFBCF4))
-                                        .weight(1f),
+                                        .weight(1f)
+                                        .clickable { navController.navigate(route = "markentry") },
                                     verticalAlignment = Alignment.CenterVertically
                                 ){
                                     Image(
