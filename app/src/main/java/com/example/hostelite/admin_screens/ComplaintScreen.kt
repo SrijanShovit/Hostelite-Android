@@ -1,9 +1,6 @@
 package com.example.hostelite.admin_screens
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,10 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDownward
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,11 +19,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.hostelite.R
 import com.example.hostelite.shared.widgets.AppBar
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
 
 private data class Complaint(
     val name: String,
@@ -43,6 +42,7 @@ private data class Complaint(
     val time: String
 )
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ComplaintScreen(navController: NavController){
     val expanded = remember { mutableStateOf(false) }
@@ -68,6 +68,61 @@ fun ComplaintScreen(navController: NavController){
             date = "26/11/2022",
             imgUrl = R.drawable.badfood,
             complaintText = "Hello Sir, the food quality is steeply degrading day by day that is affecting our health also . The rotis are much hard to chew and also they don’t serve hot roties and in paneer ki sabji we are hardy able to find pieces of paneer. it is my immediate request please fix these problems as soon as possible.",
+            status = "Pending",
+            time = "08:45 PM"
+        ),
+        Complaint(
+            name = "Ramesh Kumar",
+            dpUrl = R.drawable.dp1,
+            roomNo = "2-3",
+            title = "Unhygienic Food",
+            date = "26/11/2022",
+            imgUrl = R.drawable.badfood,
+            complaintText = "Hello Sir, the food quality is steeply degrading day by day that is affecting our health also . The rotis are much hard to chew and also they don’t serve hot roties and in paneer ki sabji we are hardy able to find pieces of paneer. it is my immediate request please fix these problems as soon as possible.",
+            status = "Rejected",
+            time = "08:45 PM"
+        ),
+        Complaint(
+            name = "Ramesh Kumar",
+            dpUrl = R.drawable.dp1,
+            roomNo = "2-3",
+            title = "Unhygienic Food",
+            date = "26/11/2022",
+            imgUrl = R.drawable.badfood,
+            complaintText = "Hello Sir, the food quality is steeply degrading day by day that is affecting our health also . The rotis are much hard to chew and also they don’t serve hot roties and in paneer ki sabji we are hardy able to find pieces of paneer. it is my immediate request please fix these problems as soon as possible.",
+            status = "Pending",
+            time = "08:45 PM"
+        ),
+        Complaint(
+            name = "Ramesh Kumar",
+            dpUrl = R.drawable.dp1,
+            roomNo = "2-3",
+            title = "Unhygienic Food",
+            date = "26/11/2022",
+            imgUrl = R.drawable.badfood,
+            complaintText = "Hello Sir, the food quality is steeply degrading day by day that is affecting our health also . The rotis are much hard to chew and also they don’t serve hot roties and in paneer ki sabji we are hardy able to find pieces of paneer. it is my immediate request please fix these problems as soon as possible.",
+            status = "Rejected",
+            time = "08:45 PM"
+        ),
+        Complaint(
+            name = "Ramesh Kumar",
+            dpUrl = R.drawable.dp1,
+            roomNo = "2-3",
+            title = "Unhygienic Food",
+            date = "26/11/2022",
+            imgUrl = R.drawable.badfood,
+            complaintText = "Hello Sir, the food quality is steeply degrading day by day that is affecting our health also . The rotis are much hard to chew and also they don’t serve hot roties and in paneer ki sabji we are hardy able to find pieces of paneer. it is my immediate request please fix these problems as soon as possible.",
+            status = "Pending",
+            time = "08:45 PM"
+        ),
+        Complaint(
+            name = "Ramesh Kumar",
+            dpUrl = R.drawable.dp1,
+            roomNo = "2-3",
+            title = "Unhygienic Food",
+            date = "26/11/2022",
+            imgUrl = R.drawable.badfood,
+            complaintText = "Hello Sir, the food quality is steeply degrading day by day that is affecting our health also . The rotis are much hard to chew and also they don’t serve hot roties and in paneer ki sabji we are hardy able to find pieces of paneer. it is my immediate request please fix these problems as soon as possible.",
             status = "Sorted",
             time = "08:45 PM"
         ),
@@ -82,7 +137,12 @@ fun ComplaintScreen(navController: NavController){
             status = "Sorted",
             time = "08:45 PM"
         ),
+
     )
+    val pagerState = rememberPagerState(initialPage = 0)
+
+    val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
         topBar = { AppBar(navController = navController, text = "View Complaints")}
     ) {
@@ -115,24 +175,54 @@ fun ComplaintScreen(navController: NavController){
                         style = TextStyle(
                             fontSize = 14.sp,
                             fontWeight = FontWeight.W500,
-                            color = Color(0xFF4BB227)
-                        )
+                            color = Color(0xFF4BB227),
+                            textDecoration = if(pagerState.currentPage == 0){
+                                TextDecoration.Underline
+                            }else{
+                                TextDecoration.None
+                            }
+                        ),
+                        modifier = Modifier.clickable {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(page = 0)
+                            }
+                        }
                     )
                     Text(
                         text = "Pending",
                         style = TextStyle(
                             fontSize = 14.sp,
                             fontWeight = FontWeight.W500,
-                            color = Color(0xFFFBC02D)
-                        )
+                            color = Color(0xFFFBC02D),
+                            textDecoration = if(pagerState.currentPage == 1){
+                                TextDecoration.Underline
+                            }else{
+                                TextDecoration.None
+                            }
+                        ),
+                        modifier = Modifier.clickable {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(page = 1)
+                            }
+                        }
                     )
                     Text(
                         text = "Rejected",
                         style = TextStyle(
                             fontSize = 14.sp,
                             fontWeight = FontWeight.W500,
-                            color = Color(0xFFFF4646)
-                        )
+                            color = Color(0xFFFF4646),
+                            textDecoration = if(pagerState.currentPage == 2){
+                                TextDecoration.Underline
+                            }else{
+                                TextDecoration.None
+                            }
+                        ),
+                        modifier = Modifier.clickable {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(page = 2)
+                            }
+                        }
                     )
                 }
             }
@@ -253,11 +343,42 @@ fun ComplaintScreen(navController: NavController){
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
-            LazyColumn(){
-                items(complaints) {
-                    complaint -> ComplaintCard(complaint)
-                }
+            HorizontalPager(count = 3, state = pagerState) {
+                page ->
+                    when(page) {
+                        0 -> {
+                            LazyColumn(){
+                                items(complaints) {
+                                    complaint ->
+                                        if (complaint.status.equals("Sorted", ignoreCase = true)){
+                                            ComplaintCard(complaint = complaint)
+                                        }
+                                }
+                            }
+                        }
+                        1 -> {
+                            LazyColumn(){
+                                items(complaints) {
+                                    complaint ->
+                                    if (complaint.status.equals("Pending", ignoreCase = true)){
+                                        ComplaintCard(complaint = complaint)
+                                    }
+                                }
+                            }
+                        }
+                        2 -> {
+                            LazyColumn(){
+                                items(complaints) {
+                                    complaint ->
+                                    if (complaint.status.equals("Rejected", ignoreCase = true)){
+                                        ComplaintCard(complaint = complaint)
+                                    }
+                                }
+                            }
+                        }
+                    }
             }
+
         }
     }
 }
@@ -380,6 +501,50 @@ private fun ComplaintCard(complaint: Complaint) {
                         color = Color(0xFF9F9F9F)
                     )
                 )
+            }
+            if(complaint.status.equals("Pending", ignoreCase = true)){
+                Spacer(modifier = Modifier.height(10.dp))
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 30.dp, vertical = 10.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Reject",
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.W500,
+                            color = Color(0xFFFF4646)
+                        ),
+                        modifier = Modifier.clickable {  }
+                    )
+                    Row(
+                        modifier = Modifier
+                            .width(120.dp)
+                            .height(40.dp)
+                            .clip(shape = RoundedCornerShape(corner = CornerSize(size = 10.dp)))
+                            .background(color = Color(0xFFDFFED4))
+                            .clickable {}
+                            .border(
+                                width = 1.dp,
+                                color = Color(0xFF4BB227),
+                                shape = RoundedCornerShape(corner = CornerSize(size = 10.dp))
+                            ),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Text(
+                            text = "Mark Sorted",
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.W500,
+                                color = Color(0xFF4BB227)
+                            )
+                        )
+                    }
+                }
             }
         }
     }

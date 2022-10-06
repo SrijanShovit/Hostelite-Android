@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import com.example.hostelite.R
 import com.example.hostelite.shared.widgets.AppBar
 import com.example.hostelite.shared.widgets.BottomDrawer
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 data class MyComplaint(
     val title: String,
@@ -306,4 +307,10 @@ private fun MyComplaintCard(myComplaint: MyComplaint) {
             }
         }
     }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+private fun ComplaintPager(){
+
 }
