@@ -58,6 +58,7 @@ fun BottomDrawer(navController: NavController, isStudent: Boolean){
 
     BottomNavigation(
         backgroundColor = Color.White,
+        elevation = 30.dp,
         contentColor = Color(0xFF8A8A8A)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -119,7 +120,7 @@ sealed class BottomNavItemStudent(val icon: ImageVector, val screen_route: Strin
 sealed class BottomNavItemAdmin(val icon: ImageVector, val screen_route: String){
     object Home : BottomNavItemAdmin(icon = Icons.Filled.Home, screen_route = "homeadmin")
     object Reports : BottomNavItemAdmin(icon = Icons.Filled.GraphicEq, screen_route = "adminentryexitreports")
-    object Alerts : BottomNavItemAdmin(icon = Icons.Filled.AddAlert, screen_route = "alerts")
+    object Alerts : BottomNavItemAdmin(icon = Icons.Filled.AddAlert, screen_route = "adminalerts")
     object Profile : BottomNavItemAdmin(icon = Icons.Filled.Person, screen_route = "adminprofile")
 
 }

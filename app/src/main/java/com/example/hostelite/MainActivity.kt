@@ -11,14 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.hostelite.admin_screens.AdminAlertsScreen
 import com.example.hostelite.admin_screens.AdminHome
 import com.example.hostelite.landing_pages.AdminCreateAccount
 import com.example.hostelite.landing_pages.CreateAccountStudent
 import com.example.hostelite.landing_pages.Login
-import com.example.hostelite.student_screens.MarkEntry
-import com.example.hostelite.student_screens.MarkExit
-import com.example.hostelite.student_screens.StudentHome
-import com.example.hostelite.student_screens.StudentReportIssue
+import com.example.hostelite.student_screens.*
 import com.example.hostelite.ui.theme.HosteliteTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,7 +39,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavigationController(){
     val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = "homestudent", builder = {
+    NavHost(navController = navController , startDestination = "homeadmin", builder = {
         composable("boarding") {
             BoardingPage(
                 onNavigateToLogin = {
@@ -103,8 +101,8 @@ fun NavigationController(){
         composable(route = "adminprofile"){
 
         }
-        composable(route = "alerts"){
-
+        composable(route = "adminalerts"){
+            AdminAlertsScreen(navController = navController)
         }
         composable(route = "studentreportissue"){
             StudentReportIssue(navController = navController)
@@ -114,6 +112,9 @@ fun NavigationController(){
         }
         composable(route = "markexit"){
             MarkExit(navController = navController)
+        }
+        composable(route = "studentalerts"){
+            AlertsStudent(navController = navController)
         }
     })
 }

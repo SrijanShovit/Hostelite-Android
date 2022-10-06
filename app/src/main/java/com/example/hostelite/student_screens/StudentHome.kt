@@ -123,7 +123,7 @@ fun StudentHome(navController: NavController){
         drawerContentColor = Color(0xFF641F65),
         content = { Scaffold(
             modifier = Modifier.fillMaxSize(),
-            bottomBar = { BottomDrawer(navController, false) }
+            bottomBar = { BottomDrawer(navController, isStudent = true) }
         ) {
             Box(modifier = Modifier.fillMaxSize()){
                 Column(
@@ -144,7 +144,9 @@ fun StudentHome(navController: NavController){
                             painter = painterResource(id = R.drawable.hostellite ),
                             contentDescription = null
                         )
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = {
+                            navController.navigate(route = "studentalerts")
+                        }) {
                             Icon(imageVector = Icons.Outlined.AddAlert, contentDescription = "Alert")
                         }
                     }
