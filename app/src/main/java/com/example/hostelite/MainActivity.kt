@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavigationController(){
     val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = "homeadmin", builder = {
+    NavHost(navController = navController , startDestination = "homestudent", builder = {
         composable("boarding") {
             BoardingPage(
                 onNavigateToLogin = {
@@ -93,7 +93,7 @@ fun NavigationController(){
 
         }
         composable(route = "mycomplaints"){
-
+            MyComplaints(navController = navController)
         }
         composable(route = "studentprofile"){
 
