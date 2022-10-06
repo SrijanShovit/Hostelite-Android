@@ -1,5 +1,7 @@
 package com.example.hostelite.admin_screens
 
+import android.app.DatePickerDialog
+import android.widget.DatePicker
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -21,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.hostelite.R
 import com.example.hostelite.shared.widgets.AppBar
+import java.util.*
 
 private data class StudentAlert(
     val dpUrl: Int,
@@ -41,6 +45,7 @@ private data class StudentAlert(
 
 @Composable
 fun AdminAlertsScreen(navController: NavController){
+    val context = LocalContext.current
     val studentAlerts: MutableList<StudentAlert> = mutableListOf(
         StudentAlert(
             dpUrl = R.drawable.dp1,
@@ -86,6 +91,21 @@ fun AdminAlertsScreen(navController: NavController){
     val expanded = remember { mutableStateOf(false) }
     val selectedHostel: MutableState<String?> = remember { mutableStateOf(null) }
 
+    val mCalendar = Calendar.getInstance()
+    val year: Int = mCalendar.get(Calendar.YEAR)
+    val month: Int = mCalendar.get(Calendar.MONTH)
+    val day: Int = mCalendar.get(Calendar.DAY_OF_MONTH)
+    val selectedDate: MutableState<String> = remember { mutableStateOf(value = "$day/${month+1}/$year") }
+
+    mCalendar.time = Date()
+
+    val mDatePickerDialog = DatePickerDialog(
+        context,
+        { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
+            selectedDate.value = "$mDayOfMonth/${mMonth+1}/$mYear"
+        }, year, month, day
+    )
+
     Scaffold(
         topBar = { AppBar(navController = navController, text = "Alerts")}
     ) {
@@ -106,6 +126,11 @@ fun AdminAlertsScreen(navController: NavController){
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ){
+                    val textStyle = TextStyle(
+                        fontSize = 12.sp,
+                        color = Color(0xFF9D9D9D),
+                        fontWeight = FontWeight.W400
+                    )
                     Row(
                         modifier = Modifier
                             .border(
@@ -120,11 +145,7 @@ fun AdminAlertsScreen(navController: NavController){
                     ){
                         Text(
                             text = selectedHostel.value ?: "Hostel",
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                color = Color(0xFF9D9D9D),
-                                fontWeight = FontWeight.W400
-                            )
+                            style = textStyle
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Icon(
@@ -193,6 +214,30 @@ fun AdminAlertsScreen(navController: NavController){
                                 )
                             }
                         }
+                    }
+                    Row(
+                        modifier = Modifier
+                            .border(
+                                width = 1.dp,
+                                color = Color(0xFFB7B7B7),
+                                shape = RoundedCornerShape(corner = CornerSize(size = 12.dp))
+                            )
+                            .padding(all = 5.dp)
+                            .clickable { mDatePickerDialog.show() },
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Text(
+                            text = selectedDate.value,
+                            style = textStyle,
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Icon(
+                            imageVector = Icons.Filled.ArrowDownward,
+                            contentDescription = "Select Date",
+                            modifier = Modifier.size(size = 10.dp)
+                        )
+
                     }
                 }
             }
