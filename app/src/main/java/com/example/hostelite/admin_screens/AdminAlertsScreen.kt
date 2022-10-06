@@ -107,7 +107,11 @@ fun AdminAlertsScreen(navController: NavController){
     )
 
     Scaffold(
-        topBar = { AppBar(navController = navController, text = "Alerts")}
+        topBar = { AppBar(navController = navController, text = "Alerts") },
+        bottomBar = { com.example.hostelite.shared.widgets.BottomDrawer(
+            navController = navController,
+            isStudent = false
+        )}
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
