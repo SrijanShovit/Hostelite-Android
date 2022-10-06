@@ -201,7 +201,7 @@ fun MyComplaints(navController: NavController){
 }
 
 @Composable
-fun MyComplaintCard(myComplaint: MyComplaint) {
+private fun MyComplaintCard(myComplaint: MyComplaint) {
     Surface(
         modifier = Modifier.fillMaxWidth().padding(vertical = 20.dp),
         shape = RoundedCornerShape(corner = CornerSize(size = 10.dp)),
