@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavigationController(){
     val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = "studentalerts", builder = {
+    NavHost(navController = navController , startDestination = "homestudent", builder = {
         composable("boarding") {
             BoardingPage(
                 onNavigateToLogin = {

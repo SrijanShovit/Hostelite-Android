@@ -58,6 +58,7 @@ fun BottomDrawer(navController: NavController, isStudent: Boolean){
 
     BottomNavigation(
         backgroundColor = Color.White,
+        elevation = 30.dp,
         contentColor = Color(0xFF8A8A8A)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
