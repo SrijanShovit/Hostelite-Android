@@ -15,10 +15,7 @@ import com.example.hostelite.admin_screens.AdminHome
 import com.example.hostelite.landing_pages.AdminCreateAccount
 import com.example.hostelite.landing_pages.CreateAccountStudent
 import com.example.hostelite.landing_pages.Login
-import com.example.hostelite.student_screens.MarkEntry
-import com.example.hostelite.student_screens.MarkExit
-import com.example.hostelite.student_screens.StudentHome
-import com.example.hostelite.student_screens.StudentReportIssue
+import com.example.hostelite.student_screens.*
 import com.example.hostelite.ui.theme.HosteliteTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,7 +38,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavigationController(){
     val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = "homestudent", builder = {
+    NavHost(navController = navController , startDestination = "studentalerts", builder = {
         composable("boarding") {
             BoardingPage(
                 onNavigateToLogin = {
@@ -114,6 +111,9 @@ fun NavigationController(){
         }
         composable(route = "markexit"){
             MarkExit(navController = navController)
+        }
+        composable(route = "studentalerts"){
+            AlertsStudent(navController = navController)
         }
     })
 }
