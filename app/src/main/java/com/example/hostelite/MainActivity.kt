@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.hostelite.admin_screens.AdminAlertsScreen
 import com.example.hostelite.admin_screens.AdminHome
+import com.example.hostelite.admin_screens.ComplaintScreen
 import com.example.hostelite.landing_pages.AdminCreateAccount
 import com.example.hostelite.landing_pages.CreateAccountStudent
 import com.example.hostelite.landing_pages.Login
@@ -93,7 +94,7 @@ fun NavigationController(){
 
         }
         composable(route = "mycomplaints"){
-
+            MyComplaints(navController = navController)
         }
         composable(route = "studentprofile"){
 
@@ -115,6 +116,9 @@ fun NavigationController(){
         }
         composable(route = "studentalerts"){
             AlertsStudent(navController = navController)
+        }
+        composable(route = "admincomplaints"){
+            ComplaintScreen(navController = navController)
         }
     })
 }
