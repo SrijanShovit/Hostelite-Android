@@ -1,5 +1,5 @@
 # Hostelite-Android
-A hostel management app being built where the complains of students and their exit or entry timing reaches directly to the administration.
+A hostel management app being built where the complaints of students and their exit or entry timing reaches directly to the administration.
 
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/SrijanShovit/Hostelite-Android?logo=github&style=for-the-badge)](https://github.com/SrijanShovit/) 
 [![GitHub last commit](https://img.shields.io/github/last-commit/SrijanShovit/Hostelite-Android?style=for-the-badge&logo=git)](https://github.com/SrijanShovit/) 
