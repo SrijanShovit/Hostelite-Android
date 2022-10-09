@@ -8,18 +8,22 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.hostelite.admin_screens.AdminAlertsScreen
-import com.example.hostelite.admin_screens.AdminHome
-import com.example.hostelite.admin_screens.ComplaintScreen
-import com.example.hostelite.landing_pages.AdminCreateAccount
-import com.example.hostelite.landing_pages.CreateAccountStudent
-import com.example.hostelite.landing_pages.Login
-import com.example.hostelite.student_screens.*
+import com.example.hostelite.presentation.Authentication.AuthenticationViewModel
+import com.example.hostelite.presentation.admin_screens.*
+import com.example.hostelite.presentation.landing_pages.AdminCreateAccount
+import com.example.hostelite.presentation.landing_pages.CreateAccountStudent
+import com.example.hostelite.presentation.landing_pages.Login
+import com.example.hostelite.presentation.landing_pages.SplashScreen
+import com.example.hostelite.presentation.student_screens.*
 import com.example.hostelite.ui.theme.HosteliteTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +34,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    NavigationController()
+                    val navController = rememberNavController()
+                    val authViewModel : AuthenticationViewModel = hiltViewModel()
+                    NavigationController(navController, authViewModel)
                 }
             }
         }
@@ -38,9 +44,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun NavigationController(){
-    val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = "homeadmin", builder = {
+fun NavigationController(navController: NavHostController, authViewModel: AuthenticationViewModel){
+    NavHost(navController = navController, startDestination = "splashscreen", builder = {
+        composable("splashscreen"){
+            SplashScreen(navController = navController, authViewModel = authViewModel)
+        }
         composable("boarding") {
             BoardingPage(
                 onNavigateToLogin = {
@@ -54,31 +62,15 @@ fun NavigationController(){
         }
         composable("login") {
             Login(
-                onNavigateToStudentCreate = {navController.navigate("createStudentAccount") },
-                onNavigateToAdminCreate = {navController.navigate("createAdminAccount")}
+                navController = navController,
+                viewModel = authViewModel
             )
         }
         composable("createStudentAccount") {
-            CreateAccountStudent(
-                onNavigateToLogin = {navController.navigate("login"){
-                    launchSingleTop = true
-                    popUpTo("createAccountStudent"){
-                        inclusive = true
-                    }
-                }
-                }
-            )
+            CreateAccountStudent(navController = navController, viewModel = authViewModel)
         }
         composable("createAdminAccount") {
-            AdminCreateAccount(
-                onNavigateToLogin = {navController.navigate("login"){
-                    launchSingleTop = true
-                    popUpTo("createAccountStudent"){
-                        inclusive = true
-                    }
-                }
-                }
-            )
+            AdminCreateAccount(navController = navController, viewModel = authViewModel)
         }
         composable(route = "homestudent") {
             StudentHome(navController)
@@ -97,10 +89,10 @@ fun NavigationController(){
             MyComplaints(navController = navController)
         }
         composable(route = "studentprofile"){
-
+            StudentProfile(navController = navController, viewModel = authViewModel)
         }
         composable(route = "adminprofile"){
-
+            AdminProfile(navController = navController)
         }
         composable(route = "adminalerts"){
             AdminAlertsScreen(navController = navController)
@@ -119,6 +111,12 @@ fun NavigationController(){
         }
         composable(route = "admincomplaints"){
             ComplaintScreen(navController = navController)
+        }
+        composable(route = "editstudentprofile"){
+            EditStudentProfile(navController = navController)
+        }
+        composable(route = "editadminprofile"){
+            EditAdminProfile(navController = navController)
         }
     })
 }
