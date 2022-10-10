@@ -1,6 +1,10 @@
 package com.example.hostelite.shared.widgets
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -19,6 +23,32 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 
+@Composable
+fun UserDetailField(label: String, value: String){
+    OutlinedTextField(
+        value = value,
+        onValueChange = {},
+        label = {
+            Text(
+                text = label,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.W400,
+                    color = Color.Black
+                )
+            )
+        },
+        modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp),
+        enabled = false,
+        textStyle = TextStyle(
+            fontWeight = FontWeight.W400,
+            fontSize = 17.sp,
+            color = Color(0xFF5433FF)
+        ),
+        shape = RoundedCornerShape(corner = CornerSize(size = 15.dp))
+    )
+
+}
 @Composable
 fun AppBar(navController: NavController, text: String){
     TopAppBar(
